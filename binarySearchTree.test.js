@@ -6,28 +6,6 @@ class Node {
         this.right = null;
         this.parent = null;
     }
-
-    // remove(value) {
-    //     if (value === this.value) {
-    //         console.log(this.value, value)
-    //         if (value > this.parent.value) {
-    //             this.parent.right = this.right;
-    //         } else {
-    //             this.parent.left = this.left;
-    //         }
-    //         return;
-    //     }
-
-    //     if (value > this.value && this.right) {
-    //         this.right.remove(value);
-    //         return;
-    //     }
-
-    //     if (value < this.value && this.left) {
-    //         this.left.remove(value);
-    //         return;
-    //     }
-    // }
 }
 
 
@@ -97,6 +75,7 @@ class BinarySearchTree {
             return 0;
         }
         if (this.root && height === 0) {
+            this.height = 0;
             height = 1;
         }
 
@@ -207,7 +186,7 @@ test('remove2', () => {
     bst.insert(23);
     bst.insert(21);
     
-    // expect(bst.getHeight()).toBe(6)
+    expect(bst.getHeight()).toBe(6)
     
     bst.remove(24);
     
@@ -215,88 +194,3 @@ test('remove2', () => {
     
 })
 })
-// describe('remove', () => {
-//     describe('with empty tree', () => {
-//         it('remove', () => {
-//             const bst = new BinarySearchTree();
-
-//             bst.remove(5);
-
-//             expect(bst.getHeight()).toBe(0);
-//         });
-//     });
-
-//     describe('whem value is equal to value of root node', () => {
-//         it('remove', () => {
-//             const bst = new BinarySearchTree();
-
-//             bst.insert(10);
-
-//             bst.remove(10);
-
-//             expect(bst.getHeight()).toBe(0);
-//         });
-//     });
-
-//     describe('when remove right', () => {
-//         it('remove', () => {
-//             const bst = new BinarySearchTree();
-
-//             [10, 12].forEach((it) => bst.insert(it));
-
-//             bst.remove(12);
-
-//             expect(bst.getHeight()).toBe(1);
-//         });
-//     });
-
-//     describe('when value is not exist', () => {
-//         it('remove', () => {
-//             const bst = new BinarySearchTree();
-
-//             [10, 12].forEach((it) => bst.insert(it));
-
-//             bst.remove(13);
-//             bst.remove(5);
-
-//             expect(bst.getHeight()).toBe(2);
-//         });
-//     });
-
-//     describe('whem value is equal to value of root node', () => {
-//         it('remove', () => {
-//             const bst = new BinarySearchTree();
-
-//             [10, 5].forEach((it) => bst.insert(it));
-
-//             bst.remove(5);
-
-//             expect(bst.getHeight()).toBe(1);
-//         });
-//     });
-
-//     describe('when node has children', () => {
-//         it('remove', () => {
-//             const bst = new BinarySearchTree();
-
-//             [10, 12, 14].forEach((it) => bst.insert(it));
-
-//             bst.remove(12);
-
-//             expect(bst.getHeight()).toBe(2);
-//         });
-//     });
-
-//     describe('when value is root value', () => {
-//         it('remove', () => {
-//             const bst = new BinarySearchTree();
-
-//             [25, 17, 34, 19, 24, 5].forEach((it) => bst.insert(it));
-
-//             bst.remove(25);
-
-//             expect(bst.getHeight()).toBe(3);
-//         });
-//     });
-// })
-
