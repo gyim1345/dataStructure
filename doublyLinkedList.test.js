@@ -1,7 +1,8 @@
  
 class Node {
-    constructor(value) {
+    constructor(value, key) {
         this.value = value;
+        this.key = key;
         this.next = null;
         this.prev = null;
     }
@@ -18,13 +19,13 @@ class DoublyLinkedList {
         return this.head == null ? true : false;
     }
 
-    append(value) {
+    append(value, key) {
         if (!this.tail) {
-            this.head = new Node(value);
+            this.head = new Node(value, key);
             this.tail = this.head;
         }
         else {
-            this.tail.next = new Node(value);
+            this.tail.next = new Node(value, key);
             this.tail.next.prev= this.tail;
             this.tail = this.tail.next;
         }
@@ -62,6 +63,34 @@ class DoublyLinkedList {
         return false;
     }
 
+    findKey(key) {
+        let currentNode = this.head;
+        do {
+            if(currentNode){
+            if (currentNode.key === key) {
+                return true;
+            }
+            
+            currentNode = currentNode.next
+        }
+        } while (currentNode !== null)
+
+        return false;
+    }
+
+    findValue(key) {
+        console.log(key)
+        let currentNode = this.head;
+        do {
+            if (currentNode.key === key) {
+                return currentNode.value;
+            }
+            currentNode = currentNode.next
+        } while (currentNode !== null)
+
+        return false;
+    }
+
     getHead() {
         return this.head == null ? null : this.head.value;
     }
@@ -91,6 +120,29 @@ class DoublyLinkedList {
         }
         currentNode.next = currentNode.next.next;
         currentNode.next.prev = currentNode;
+        this.count = this.count-1;
+    }
+
+    removeKey(key) {
+        let currentNode = this.head;
+
+        if (!this.head) {
+            return;
+        }
+        if (this.head.key === key) {
+            this.head = this.head.next;
+            this.head.prev = null;
+            this.count = this.count-1;
+            return;
+        }
+
+        while (currentNode.next.key !== key) {
+            currentNode = currentNode.next;
+            if(!currentNode.next) {
+                return;
+            }
+        }
+        currentNode.next = currentNode.next.next;
         this.count = this.count-1;
     }
 
