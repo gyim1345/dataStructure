@@ -27,6 +27,7 @@ class HashTable extends DoublyLinkedList {
     }
 
     set(key, value) {
+        console.log(this.hashFunction(key))
         this.HashArray[this.hashFunction(key)].push({ key, value });
         // console.log(this.hashFunction(key))
         // console.log(this.HashArray[0].push(1))
@@ -56,19 +57,14 @@ class HashTable extends DoublyLinkedList {
     }
 }
 
-
-
-
-
 test('setHashTable', () => {
-    
+        
     const table = new HashTable(3);
     
     table.set('abc', 23)
     expect(table.get('abc')).toBe(23)
     table.set('acb', 25)
     expect(table.get('acb')).toBe(25)
-    
 })
 
 test('has', () => {
@@ -109,7 +105,7 @@ test('delete', () => {
 
 
 test('getKeys', () => {
-    const table = new HashTable(3);
+    const table = new HashTable(1);
     
     table.set('abc', 23);
     table.set('acb', 25);

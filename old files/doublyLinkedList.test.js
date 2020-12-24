@@ -1,4 +1,4 @@
- 
+
 class Node {
     constructor(value, key) {
         this.value = value;
@@ -26,7 +26,7 @@ class DoublyLinkedList {
         }
         else {
             this.tail.next = new Node(value, key);
-            this.tail.next.prev= this.tail;
+            this.tail.next.prev = this.tail;
             this.tail = this.tail.next;
         }
 
@@ -34,7 +34,7 @@ class DoublyLinkedList {
     }
 
     prepend(value) {
-        if(!this.head) {
+        if (!this.head) {
             this.head = new Node(value);
             this.tail = this.head;
             return
@@ -43,7 +43,7 @@ class DoublyLinkedList {
         newNode.next = this.head;
         this.head.prev = newNode;
         this.head = newNode;
-        
+
         this.count = this.count + 1;
     }
 
@@ -66,13 +66,13 @@ class DoublyLinkedList {
     findKey(key) {
         let currentNode = this.head;
         do {
-            if(currentNode){
-            if (currentNode.key === key) {
-                return true;
+            if (currentNode) {
+                if (currentNode.key === key) {
+                    return true;
+                }
+
+                currentNode = currentNode.next
             }
-            
-            currentNode = currentNode.next
-        }
         } while (currentNode !== null)
 
         return false;
@@ -108,19 +108,19 @@ class DoublyLinkedList {
         if (this.head.value === value) {
             this.head = this.head.next;
             this.head.prev = null;
-            this.count = this.count-1;
+            this.count = this.count - 1;
             return;
         }
 
         while (currentNode.next.value !== value) {
             currentNode = currentNode.next;
-            if(!currentNode.next) {
+            if (!currentNode.next) {
                 return;
             }
         }
         currentNode.next = currentNode.next.next;
         currentNode.next.prev = currentNode;
-        this.count = this.count-1;
+        this.count = this.count - 1;
     }
 
     removeKey(key) {
@@ -132,23 +132,23 @@ class DoublyLinkedList {
         if (this.head.key === key) {
             this.head = this.head.next;
             this.head.prev = null;
-            this.count = this.count-1;
+            this.count = this.count - 1;
             return;
         }
 
         while (currentNode.next.key !== key) {
             currentNode = currentNode.next;
-            if(!currentNode.next) {
+            if (!currentNode.next) {
                 return;
             }
         }
         currentNode.next = currentNode.next.next;
-        this.count = this.count-1;
+        this.count = this.count - 1;
     }
 
     toArray() {
         let currentNode = this.head;
-        let array =[];
+        let array = [];
         do {
             array.push(currentNode.value);
             currentNode = currentNode.next
@@ -159,7 +159,7 @@ class DoublyLinkedList {
 
     toReverseArray() {
         let currentNode = this.tail;
-        let array =[];
+        let array = [];
         do {
             array.push(currentNode.value);
             currentNode = currentNode.prev
@@ -183,7 +183,7 @@ test('DoublyLinkedList', () => {
 
     list.append(2);
     expect(list.getTail()).toBe(2);
-    
+
     list.append(3);
     expect(list.getTail()).toBe(3);
 
@@ -202,14 +202,14 @@ test('DoublyLinkedList', () => {
 
     expect(list.size()).toBe(3);
 
-    expect(list.toArray()).toEqual([1,2,3]);
+    expect(list.toArray()).toEqual([1, 2, 3]);
 
-    expect(list.toReverseArray()).toEqual([3,2,1]);
+    expect(list.toReverseArray()).toEqual([3, 2, 1]);
     list.append(4);
-    expect(list.toReverseArray()).toEqual([4,3,2,1]);
+    expect(list.toReverseArray()).toEqual([4, 3, 2, 1]);
 
     list.prepend(0);
-    expect(list.toReverseArray()).toEqual([4,3,2,1,0]);
+    expect(list.toReverseArray()).toEqual([4, 3, 2, 1, 0]);
 
     const list3 = new DoublyLinkedList();
     list3.prepend(0);
