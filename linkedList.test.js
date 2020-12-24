@@ -79,6 +79,12 @@ class LinkedList {
     while (currentNode.value !== value) {
       prevNode = currentNode;
       currentNode = currentNode.next;
+      if (!currentNode) {
+        break;
+      }
+    }
+    if (!currentNode) {
+      return;
     }
 
     if (currentNode === this.head && currentNode === this.tail) {
@@ -135,8 +141,8 @@ class LinkedList {
       return;
     }
 
-    //인덱스 0 에 넣을시에
-    if (index === 0) {
+    //인덱스 0 혹은 그 이하로 넣을시에
+    if (index <= 0) {
       newNode.next = this.head;
       this.head = newNode;
       this.count += 1;
@@ -208,6 +214,7 @@ test('remove', () => {
   expect(list2.isEmpty()).toBe(false);
   expect(list2.getSize()).toBe(2);
   expect(list2.toArray()).toEqual([1, 3]);
+  list2.remove(12);
 });
 
 test('insert', () => {
@@ -229,4 +236,7 @@ test('insert', () => {
 
   list2.insert(0, 0.4);
   expect(list2.toArray()).toEqual([0.4, 1, 3, 3.5, 4, 5]);
+
+  list2.insert(-100, 0);
+  expect(list2.toArray()).toEqual([0, 0.4, 1, 3, 3.5, 4, 5]);
 });
